@@ -34,12 +34,20 @@ end
 
 --获取路径
 function files:getFilePath(filename)
-	return string.match(filename, "(.+)/[^/]*%.%w+$");
+    if string.find(filename,":") then  
+        return string.match(filename, "(.+)\\[^\\]*%.%w+") -- windows  
+    else  
+        return string.match(filename, "(.+)/[^/]*%.%w+$")   -- *nix system  
+    end  
 end
 
 --获取文件名  
 function files:getFileName(filename)  
-	return string.match(filename, ".+/([^/]*%.%w+)$")
+    if string.find(filename,":") then  
+        return string.match(filename, ".+\\([^\\]*%.%w+)")  -- windows  
+    else  
+        return string.match(filename, ".+/([^/]*%.%w+)$")   -- *nix system  
+    end  
 end
 
 --获取扩展名
