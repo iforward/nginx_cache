@@ -1,5 +1,5 @@
-BASE_PATH = "/Users/iforward/www/www.lua.com/cache";
-package.path = '/usr/local/share/lua/5.1/?.lua;'..BASE_PATH..'/?.lua' 
+BASE_PATH = "/home/www/cache";
+package.path = '/usr/local/lib/lua/5.1/?.lua;'..BASE_PATH..'/?.lua' 
 config = require("conf.Config");
 helpers = require("core.Helpers");
 files = require("core.Files");

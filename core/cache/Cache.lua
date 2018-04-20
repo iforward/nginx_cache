@@ -22,7 +22,8 @@ function cache:isopen()
 	match = {};
 	for k,v in pairs( directory ) do
 		local val = helpers:split( helpers:trim( v ), " " )
-		local m = ngx.re.match( uri, val[1], "aisJ" )
+		local m = ngx.re.match( uri, val[1], "ais" )
+		--local m = ngx.re.match( uri, val[1], "aisJ" )
 		if m then
 			local len = string.len( m[0] );
 			match[k] = { len, m[0], val[2] };
