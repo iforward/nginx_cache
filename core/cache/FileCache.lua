@@ -24,7 +24,11 @@ function fileCache:init()
 end
 
 function fileCache:read( uri )
-	local file = self.cachePath .. uri .. '.cache';
+	local filename = files:getFileName( uri ) ~= nil and files:getFileName( uri ) or 'index';
+	local filePath = files:getFilePath(uri) ~= nil and files:getFilePath(uri) or uri;
+	filename = filename .. '.cache';
+	filePath = self.cachePath .. filePath
+	local file = helpers:rtrim( filePath, '/' ) .. '/' .. filename;
 	if files:file_exists( file ) == false then
 		return false;
 	end
@@ -32,8 +36,11 @@ function fileCache:read( uri )
 end
 
 function fileCache:write( uri, content )
-	local filename = files:getFileName( uri ) .. '.cache';
-	local filePath = self.cachePath .. files:getFilePath(uri)
+	local filename = files:getFileName( uri ) ~= nil and files:getFileName( uri ) or 'index';
+	local filePath = files:getFilePath(uri) ~= nil and files:getFilePath(uri) or uri;
+	filename = filename .. '.cache';
+	filePath = self.cachePath .. filePath
+
 	files:mkdirs( filePath );
 	--ngx.say( helpers:rtrim( filePath, '/' ) .. '/' .. filename );
 	files:write( helpers:rtrim( filePath, '/' ) .. '/' .. filename, content );

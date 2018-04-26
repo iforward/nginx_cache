@@ -1,5 +1,5 @@
-local factory = require("core.cache.factory");
-local redisCache = require("core.cache.redisCache");
+local factory = require("core.cache.Factory");
+local redisCache = require("core.cache.RedisCache");
 
 redisFactory = {};
 
