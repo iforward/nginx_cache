@@ -8,7 +8,9 @@ server {
 
 	......
 
-	rewrite_by_lua_file /Users/iforward/www/www.lua.com/cache/router.lua;
+	default_type 'text/html';
+	set $LUA_BASE_PATH /xxx/xxx/xxx/your-lua-path;
+	rewrite_by_lua_file $LUA_BASE_PATH/Router.lua;
 
 	......
 
