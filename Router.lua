@@ -3,8 +3,8 @@ package.path = '/usr/local/lib/lua/5.1/?.lua;'..BASE_PATH..'/?.lua'
 config = require("conf.Config");
 helpers = require("core.Helpers");
 files = require("core.Files");
-local request = require("core.Request");
-local cacheDispatch = require("core.cache.Dispatch");
+request = require("core.Request");
+cacheDispatch = require("core.cache.Dispatch");
 
 local cacheDispatch = cacheDispatch:new();
 cache = cacheDispatch:getCache();
