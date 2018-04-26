@@ -1,5 +1,15 @@
 helpers = {}
 
+--in_table() 函数搜索table中是否存在指定的值。
+function helpers:in_table( string , table )
+	for _,v in ipairs( table ) do
+		if( v == string ) then
+			return true;
+		end
+	end 
+	return false;
+end
+
 --去除字符串两边空格
 function helpers:trim ( string, char )
 	if not char then
