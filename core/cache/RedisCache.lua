@@ -1,4 +1,4 @@
-local redis = require("core.Redis");
+local redis = require("components.Redis");
 local cache = require("core.cache.Cache");
 
 redisCache = {};

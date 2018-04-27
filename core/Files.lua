@@ -1,4 +1,4 @@
-require "lfs";
+lfs = require "lfs";
 
 files = {}
 

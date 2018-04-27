@@ -35,7 +35,7 @@ function run:main()
 
 	if ( args.clean == "1" ) then
 		--ngx.say(args.nocache)
-		local resp = request:get( uri, param );	
+		local resp = request:subRequest( uri, param );	
 		if( resp ~= nil ) then
 			cache:write( uri, resp );
 			ngx.say(resp);

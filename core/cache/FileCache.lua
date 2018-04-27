@@ -1,5 +1,3 @@
-require "lfs";
-
 local cache = require("core.cache.Cache");
 
 fileCache = cache:new();
