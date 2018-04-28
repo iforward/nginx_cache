@@ -50,7 +50,7 @@ function run:main()
 			ngx.say(res);
 			return ngx.exit(ngx.HTTP_OK);
 		else
-			local resp = request:get( uri, param );	
+			local resp = request:subRequest( uri, param );	
 			if( resp ~= nil ) then
 				cache:write( uri, resp );
 				ngx.say(resp);
