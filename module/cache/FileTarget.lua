@@ -1,9 +1,9 @@
-local cache = require("core.cache.Cache");
+local target = require("module.cache.Target");
 
-fileCache = cache:new();
+fileTarget = target:new();
 
-function fileCache:new()
-	local o = cache:new{ cachePath=nil };
+function fileTarget:new()
+	local o = target:new{ cachePath=nil };
 	local parent_mt = getmetatable(o);
 
 	-- 当方法在子类中查询不到时，再去父类中去查找。
@@ -16,12 +16,12 @@ function fileCache:new()
 	return o;
 end
 
-function fileCache:init() 
+function fileTarget:init() 
 	self.cachePath = config.cache.path;
 	return true;
 end
 
-function fileCache:read( uri )
+function fileTarget:read( uri )
 	local filename = files:getFileName( uri ) ~= nil and files:getFileName( uri ) or 'index';
 	local filePath = files:getFilePath(uri) ~= nil and files:getFilePath(uri) or uri;
 	filename = filename .. '.cache';
@@ -33,7 +33,7 @@ function fileCache:read( uri )
 	return files:readFile( file );
 end
 
-function fileCache:write( uri, content )
+function fileTarget:write( uri, content )
 	local filename = files:getFileName( uri ) ~= nil and files:getFileName( uri ) or 'index';
 	local filePath = files:getFilePath(uri) ~= nil and files:getFilePath(uri) or uri;
 	filename = filename .. '.cache';
@@ -45,4 +45,4 @@ function fileCache:write( uri, content )
 	return true;
 end
 
-return fileCache;
+return fileTarget;

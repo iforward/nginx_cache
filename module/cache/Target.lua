@@ -1,15 +1,15 @@
-cache = {};
+target = {};
 
-function cache:new()
+function target:new()
 	local o = {};
 	return setmetatable( o, {__index = self} );
 end
 
-function cache:init() 
-	ngx.say("this is cache init");
+function target:init() 
+	ngx.say("this is target init");
 end
 
-function cache:isopen()
+function target:isopen()
 	--缓存是否正针对get请求
 	local request_method = ngx.var.request_method;
 	if( config.cache.get == 1 and request_method ~= "GET" ) then
@@ -46,4 +46,4 @@ function cache:isopen()
 	return false;
 end
 
-return cache;
+return target;

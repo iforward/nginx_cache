@@ -5,6 +5,5 @@ config = require("conf.Config");
 helpers = require("core.Helpers");
 files = require("core.Files");
 request = require("core.Request");
-cacheDispatch = require("core.cache.Dispatch");
 
 require("Run"):new();

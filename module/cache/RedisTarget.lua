@@ -1,10 +1,10 @@
 local redis = require("components.Redis");
-local cache = require("core.cache.Cache");
+local target = require("module.cache.Target");
 
-redisCache = {};
+redisTarget = target:new();
 
-function redisCache:new()
-	local o = cache:new{ red=nil, host=nil, port=nil, timeout=0 };
+function redisTarget:new()
+	local o = target:new{ red=nil, host=nil, port=nil, timeout=0 };
 	local parent_mt = getmetatable(o);
 
 	-- 当方法在子类中查询不到时，再去父类中去查找。
@@ -17,13 +17,13 @@ function redisCache:new()
 	return o;
 end
 
-function redisCache:init()
+function redisTarget:init()
 	self.host = config.redis.host;
 	self.port = config.redis.port;
 	self.timeout = config.redis.timeout;
 end
 
-function redisCache:connect()
+function redisTarget:connect()
 	self.red = redis:new();
 	--ngx.say( self.red )
 	local ok, err = self.red:connect( self.host, self.port );
@@ -33,18 +33,18 @@ function redisCache:connect()
 	end
 end
 
-function redisCache:read( uri )
+function redisTarget:read( uri )
 	self:connect();
 	--ngx.say( "cache:"..ngx.md5(uri) );
-	return self:get( "cache:"..ngx.md5(uri) );
+	return self:get( "PageCache:"..ngx.md5(uri) );
 end
 
-function redisCache:write( uri, content )
+function redisTarget:write( uri, content )
 	self:connect();
-	return self:set( "cache:"..ngx.md5(uri), content );
+	return self:set( "PageCache:"..ngx.md5(uri), content );
 end
 
-function redisCache:get( key )
+function redisTarget:get( key )
 	res, err = self.red:get( key );
 	if( res ~= ngx.null ) then
 		return res;
@@ -52,7 +52,7 @@ function redisCache:get( key )
 	return false
 end
 
-function redisCache:set( key, string )
+function redisTarget:set( key, string )
 	local ok, err = self.red:set( key, string, "EX", self.timeout );
 	if not ok then
 		return false;
@@ -60,4 +60,4 @@ function redisCache:set( key, string )
 	return true;
 end
 
-return redisCache;
+return redisTarget;
