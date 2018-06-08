@@ -3,8 +3,8 @@ config = {};
 --base
 config.cache = {}
 config.cache.get = 1 --静态化仅开启get请求
-config.cache.mode = "redis"
---config.cache.mode = "file"
+--config.cache.mode = "redis"
+config.cache.mode = "file"
 config.cache.path = BASE_PATH .. "/runtime/cache"
 
 --redis
