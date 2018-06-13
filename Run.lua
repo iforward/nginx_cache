@@ -1,3 +1,4 @@
+zoneLine = require("module.zoneline.ZoneLine");
 cache = require("module.cache.Cache");
 run = {};
 
@@ -14,7 +15,9 @@ function run:init()
 end
 
 function run:main()
-	--静态化缓存
+	--分区上线模块
+	zoneLine:new();
+	--静态化缓存模块
 	cache:new();
 end
 

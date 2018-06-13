@@ -16,17 +16,15 @@ function target:isopen()
 		return false;
 	end
 
-	local directory = files:readFile( BASE_PATH .. '/conf/Directory.conf' );
 	local uri = ngx.var.uri;
 
 	match = {};
-	for k,v in pairs( directory ) do
-		local val = helpers:split( helpers:trim( v ), " " )
-		local m = ngx.re.match( uri, val[1], "ais" )
+	for k,v in pairs( config.cache.rule ) do
+		local m = ngx.re.match( uri, v[1], "ais" )
 		--local m = ngx.re.match( uri, val[1], "aisJ" )
 		if m then
 			local len = string.len( m[0] );
-			match[k] = { len, m[0], val[2] };
+			match[k] = { len, m[0], v[2] };
 		end
 	end
 
