@@ -1,3 +1,4 @@
+local bit32 = require('bit')
 local City = {data = ""}
 
 City.__index = City
@@ -17,7 +18,7 @@ local function byteToUint32(a,b,c,d)
     end
 end
 
-local function string.split(input, delimiter)
+function string.split(input, delimiter)
     input = tostring(input)
     delimiter = tostring(delimiter)
     if (delimiter=='') then return false end

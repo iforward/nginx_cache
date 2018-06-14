@@ -23,6 +23,12 @@ function request:post()
 	return args;
 end
 
+--获取用户主机地址(人话:获取ip)
+function request:getUserHostAddress()
+	local ip = ngx.var.remote_addr;
+	return ip;
+end
+
 --解析json格式请求
 function request:json()
 	local contentType = ngx.var.content_type;

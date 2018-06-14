@@ -15,18 +15,18 @@ end
 
 function cache:main()
 	local cacheDispatch = cacheDispatch:new();
-	target = cacheDispatch:getCache();
+	local target = cacheDispatch:getCache();
 
 	local uri = ngx.var.uri;
 	local args = ngx.req.get_uri_args();
 
 	--判断请求是否走缓存
 	if ( target:isopen() == false ) then
-		return ngx.exit(ngx.OK);
+		return;
 	end;
 
 	--处理get参数
-	param = {};
+	local param = {};
 	for k,v in pairs(args) do
 		if ( k ~= "clean" ) then
 			param[k] = v;
@@ -60,7 +60,7 @@ function cache:main()
 		end
 	end
 
-	return ngx.exit(ngx.OK);
+	return;
 end
 
 return cache;

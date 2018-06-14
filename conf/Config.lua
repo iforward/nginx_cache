@@ -26,7 +26,7 @@ return {
 	zoneline = {
 		localtion = { 
 			default ="default",
-			default ="/api.php",
+			target ="/api.php",
 		},
 		rule = {
 			uri = {
@@ -34,8 +34,14 @@ return {
 				{ [[^\/[\w]+\/]], 'match' },
 			},
 			district = {
-				{ [[湖北,北京,上海]], 'off' },
-				{ [[湖北,北京,上海]], 'on' },
+				province = {	
+					{ [[北京,上海]], 'off' },
+					{ [[北京,上海]], 'on' },
+				},
+				city = {
+					{ [[武汉]], 'on' },
+					{ [[广州,深圳]], 'on' },
+				},
 			},
 		},
 	},
