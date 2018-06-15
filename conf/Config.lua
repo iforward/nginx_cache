@@ -31,7 +31,7 @@ return {
 		rule = {
 			uri = {
 				{ [[/]], 'match' },
-				{ [[^\/[\w]+\/]], 'match' },
+				{ [[^\/[\w]+\/]], 'on' },
 			},
 			district = {
 				province = {	

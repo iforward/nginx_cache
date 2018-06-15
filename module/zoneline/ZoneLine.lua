@@ -28,8 +28,15 @@ function zoneLine:main()
 	param["zoneline"] = 1;
 	
 	uriMatch = uriMatch:new();	
-	ngx.say( uriMatch:match( uri ) );
-	ngx.exit(200);
+	local uriRule = uriMatch:match( uri );
+	if ( args.zoneline ~= "1" and rule == "on" ) then
+		ngx.exec( config.zoneline.localtion.target, param );
+	elseif ( args.zoneline ~= "1" and uriRule == "off" ) then
+		if config.zoneline.localtion.default ~= "default" then
+			ngx.exec( config.zoneline.localtion.default, param );
+		end
+		return;
+	end
 
 	--获取ip
 	local userHostAddress = request:getUserHostAddress();
@@ -48,9 +55,9 @@ function zoneLine:main()
 		if config.zoneline.localtion.default ~= "default" then
 			ngx.exec( config.zoneline.localtion.default, param );
 		end
+		return;
 	end
 
-	return;
 end
 
 return zoneLine;
