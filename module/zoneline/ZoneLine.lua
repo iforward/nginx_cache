@@ -1,11 +1,15 @@
 district = require("module.zoneline.District");
 uriMatch = require("module.zoneline.UriMatch");
 
-zoneLine = {};
+zoneLine = { configZoneline = nil };
 
 function zoneLine:new()
 	local o = {};
 	local m = setmetatable( o, {__index = self} );
+	self.configZoneline = config.module.zoneline;
+	if self.configZoneline == nil or self.configZoneline.service ~= 'on' then
+		return;
+	end
 	self:init();
 	return m;
 end
@@ -30,10 +34,10 @@ function zoneLine:main()
 	uriMatch = uriMatch:new();	
 	local uriRule = uriMatch:match( uri );
 	if ( args.zoneline ~= "1" and rule == "on" ) then
-		ngx.exec( config.zoneline.localtion.target, param );
+		ngx.exec( self.configZoneline.localtion.target, param );
 	elseif ( args.zoneline ~= "1" and uriRule == "off" ) then
-		if config.zoneline.localtion.default ~= "default" then
-			ngx.exec( config.zoneline.localtion.default, param );
+		if self.configZoneline.localtion.default ~= "default" then
+			ngx.exec( self.configZoneline.localtion.default, param );
 		end
 		return;
 	end
@@ -50,10 +54,10 @@ function zoneLine:main()
 
 	--派发请求
 	if( args.zoneline ~= "1" and rule == "on" ) then
-		ngx.exec( config.zoneline.localtion.target, param );
+		ngx.exec( self.configZoneline.localtion.target, param );
 	else
-		if config.zoneline.localtion.default ~= "default" then
-			ngx.exec( config.zoneline.localtion.default, param );
+		if self.configZoneline.localtion.default ~= "default" then
+			ngx.exec( self.configZoneline.localtion.default, param );
 		end
 		return;
 	end

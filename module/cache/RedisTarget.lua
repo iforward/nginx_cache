@@ -18,9 +18,9 @@ function redisTarget:new()
 end
 
 function redisTarget:init()
-	self.host = config.redis.host;
-	self.port = config.redis.port;
-	self.timeout = config.redis.timeout;
+	self.host = config.base.redis.host;
+	self.port = config.base.redis.port;
+	self.timeout = config.base.redis.timeout;
 end
 
 function redisTarget:connect()

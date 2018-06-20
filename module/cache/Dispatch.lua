@@ -14,7 +14,7 @@ function dispatch:init()
 end
 
 function dispatch:getCache()
-	return Factory:create( config.cache.mode );
+	return Factory:create( config.module.cache.mode );
 end
 
 return dispatch;

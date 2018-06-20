@@ -17,7 +17,7 @@ function fileTarget:new()
 end
 
 function fileTarget:init() 
-	self.cachePath = config.cache.path;
+	self.cachePath = config.module.cache.path;
 	return true;
 end
 

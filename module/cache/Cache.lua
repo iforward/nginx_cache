@@ -1,9 +1,14 @@
 cacheDispatch = require("module.cache.Dispatch");
-cache = {};
+
+cache = { configCache = nil };
 
 function cache:new()
 	local o = {};
 	local m = setmetatable( o, {__index = self} );
+	self.configCache = config.module.cache;
+	if self.configCache == nil or self.configCache.service ~= 'on' then
+		return;
+	end
 	self:init();
 	return m;
 end

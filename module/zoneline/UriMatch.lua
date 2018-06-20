@@ -13,7 +13,7 @@ end
 
 function urimatch:match( uri )
 	match = {};
-	for k,v in pairs( config.zoneline.rule.uri ) do
+	for k,v in pairs( config.module.zoneline.rule.uri ) do
 		local m = ngx.re.match( uri, v[1], "ais" );
 		if m then
 			local len = string.len( m[0] );

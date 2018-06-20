@@ -12,14 +12,14 @@ end
 function target:isopen()
 	--缓存是否正针对get请求
 	local request_method = ngx.var.request_method;
-	if( config.cache.get == 1 and request_method ~= "GET" ) then
+	if( config.module.cache.get == 1 and request_method ~= "GET" ) then
 		return false;
 	end
 
 	local uri = ngx.var.uri;
 
 	match = {};
-	for k,v in pairs( config.cache.rule ) do
+	for k,v in pairs( config.module.cache.rule ) do
 		local m = ngx.re.match( uri, v[1], "ais" )
 		--local m = ngx.re.match( uri, val[1], "aisJ" )
 		if m then
