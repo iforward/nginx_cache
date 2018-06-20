@@ -6,7 +6,7 @@ helpers = require("core.Helpers");
 files = require("core.Files");
 request = require("core.Request");
 
---for k,v in ipairs(config.cache.rule) do
+--for k,v in ipairs(config.module.cache.rule) do
 --	ngx.say(v[2])
 --end
 --ngx.exit(200);

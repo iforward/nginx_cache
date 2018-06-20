@@ -15,10 +15,14 @@ function run:init()
 end
 
 function run:main()
-	--分区上线模块
-	zoneLine:new();
-	--静态化缓存模块
-	cache:new();
+	if config.module.zoneline.service == 'on' then
+		ngx.header["zoneline"] = 'on';
+		zoneLine:new(); --分区上线模块
+	end
+	if config.module.cache.service == 'on' then
+		ngx.header["cache"] = 'on';
+		cache:new(); --静态化缓存模块
+	end
 end
 
 return run;
