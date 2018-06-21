@@ -15,8 +15,21 @@ function run:init()
 end
 
 function run:main()
+	self:OpenModuleWriteToHeader();
 	zoneLine:new(); --分区上线模块
 	cache:new(); --静态化缓存模块
+end
+
+--启动的模块写入到header头当中
+function run:OpenModuleWriteToHeader()
+	local module = {};
+	for k,v in pairs(config.module) do
+		if v.service == 'on' then
+			table.insert( module, k );
+		end
+	end
+	ngx.header["module"] = table.concat( module, ',' );
+	return true;
 end
 
 return run;

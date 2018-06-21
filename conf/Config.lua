@@ -10,6 +10,7 @@ return {
 	},
 
 	module = {
+
 		--cache
 		cache = {
 			service = 'on', --服务是否开启; on, off
@@ -25,7 +26,6 @@ return {
 				{ [[/wp-]], 'off' },
 			},
 		},
-
 		--zoneline
 		zoneline = {
 			service = 'on', --服务是否开启; on, off
@@ -50,5 +50,6 @@ return {
 				},
 			},
 		},
+
 	}
 };
