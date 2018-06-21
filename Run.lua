@@ -28,7 +28,7 @@ function run:OpenModuleWriteToHeader()
 			table.insert( module, k );
 		end
 	end
-	ngx.header["module"] = table.concat( module, ',' );
+	ngx.header["Module"] = table.concat( module, ',' );
 	return true;
 end
 
